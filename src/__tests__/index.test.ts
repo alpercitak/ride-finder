@@ -25,7 +25,7 @@ describe('index', () => {
     expect(res.statusCode).toEqual(200);
     expect(res.body).toHaveProperty('data');
     expect(res.body.data).toBeInstanceOf(Array);
-  });
+  }, 30000);
 
   it('[/rides] should be all: disabled [true]', async () => {
     const res = await request(server).get('/rides?limit=10&is_disabled=true');
