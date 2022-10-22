@@ -1,0 +1,19 @@
+{
+  "name": "ride-finder",
+  "version": "1.0.0",
+  "description": "Ride finder based on GBFS data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alpercitak/ride-finder.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alpercitak/ride-finder/issues"
+  },
+  "homepage": "https://github.com/alpercitak/ride-finder#readme"
+}
