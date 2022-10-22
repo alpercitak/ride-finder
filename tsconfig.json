@@ -10,5 +10,6 @@
     "esModuleInterop": true,
     "resolveJsonModule": true
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "src/swagger.json"],
+  "exclude": ["src/**/__tests__"]
 }

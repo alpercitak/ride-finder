@@ -1,0 +1,128 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Ride Finder",
+    "description": "Ride finder based on GBFS",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "basePath": "/",
+  "paths": {
+    "/rides": {
+      "get": {
+        "tags": ["Rides"],
+        "summary": "Get the rides in system based on parameters",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "parameters": [
+          {
+            "name": "is_disabled",
+            "in": "query",
+            "description": "Checks if the ride is disabled or not",
+            "type": "boolean",
+            "example": true
+          },
+          {
+            "name": "is_reserved",
+            "in": "query",
+            "description": "Checks if the ride is reserved or not",
+            "type": "boolean",
+            "example": true
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Limits the length of found rides",
+            "type": "integer",
+            "example": 10
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Sets the starting point of rides to be searched",
+            "type": "integer",
+            "example": 10
+          },
+          {
+            "name": "pricing_plan_id",
+            "in": "query",
+            "description": "Identifier of the pricing plan",
+            "type": "string",
+            "example": "a4d5e9f0-3f82-459b-901f-41ef42fd2402"
+          },
+          {
+            "name": "vehicle_type_id",
+            "in": "query",
+            "description": "Identifier of the vehicle type",
+            "type": "string",
+            "example": "escooter_paris"
+          },
+          {
+            "name": "polygon",
+            "in": "query",
+            "description": "Returns the rides is in the given polygon (array of lat,lon)",
+            "type": "array",
+            "collectionFormat": "multi",
+            "example": ["48.0,2.0", "48.0,2.27", "48.9,2.27", "48.9,2.31"]
+          },
+          {
+            "name": "center",
+            "in": "query",
+            "description": "Defines the center point to be searched with parameter: radius (lat,lon)",
+            "type": "string",
+            "example": "48.83855,2.314438"
+          },
+          {
+            "name": "radius",
+            "in": "query",
+            "description": "Defines the radius to be searched with parameter: center (in km)",
+            "type": "integer",
+            "example": "100"
+          },
+          {
+            "name": "with_prices",
+            "in": "query",
+            "description": "Sets the key: [pricing_plan] based on the value from /prices (relevant data to pricing_plan_id)",
+            "type": "boolean",
+            "example": true
+          },
+          {
+            "name": "cluster_size",
+            "in": "query",
+            "description": "Defines the count of clusters to be returned (based on lat,lon of the rides, filtered by other fields)",
+            "type": "integer",
+            "example": "4"
+          }
+        ]
+      }
+    },
+    "/prices": {
+      "get": {
+        "tags": ["Prices"],
+        "summary": "Get all prices in system",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "parameters": [
+          {
+            "name": "plan_id",
+            "in": "query",
+            "description": "Identifier of the pricing plan",
+            "type": "string"
+          }
+        ]
+      }
+    }
+  },
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"]
+}

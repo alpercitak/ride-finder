@@ -127,6 +127,18 @@ app.get('/health', (req: Request, res: Response) => {
 });
 
 /**
+ * Initialize swagger
+ */
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+/**
+ * Initial call for getRides for caching
+ */
+getRides({});
+
+/**
  * Initialize http server
  */
 const server = app.listen(port, () => {
