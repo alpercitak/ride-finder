@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon",
-    "build": "rimraf ./dist && tsc",
+    "build": "rimraf ./coverage && npm run test && rimraf ./dist && tsc",
     "start": "npm run build && node dist/index.js",
     "prepare": "husky install",
     "format": "prettier --write .",
