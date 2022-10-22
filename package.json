@@ -28,6 +28,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-prom-bundle": "^6.5.0",
+    "geolib": "^3.3.3",
     "prom-client": "^14.1.0"
   },
   "devDependencies": {

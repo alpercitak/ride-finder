@@ -1,2 +1,3 @@
 # ride-finder
- Ride finder based on GBFS data
+
+Ride finder based on GBFS data
