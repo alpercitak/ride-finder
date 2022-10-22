@@ -31,6 +31,7 @@
     "express-prom-bundle": "^6.5.0",
     "geolib": "^3.3.3",
     "node-cache": "^5.1.2",
+    "node-kmeans": "^1.1.9",
     "prom-client": "^14.1.0"
   },
   "devDependencies": {
