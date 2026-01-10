@@ -4,27 +4,13 @@ import { getRides, getPrices } from './service';
 import type { GetRidesRequest, GetPricesRequest } from './service/types';
 import { GeoCoordinates } from './geo/types';
 import { checkBoolean, isValidNumber } from './validation';
-import promBundle from 'express-prom-bundle';
+import metricsMiddleware from './prometheus';
 
 dotenv.config();
 
 const app: Express = express();
 const port: number = parseInt(process.env.PORT as string) || 8001;
 
-/**
- * Initialize prometheus and mount to the path /metrics
- */
-const metricsMiddleware = promBundle({
-  includeMethod: true,
-  includePath: true,
-  includeStatusCode: true,
-  includeUp: true,
-  customLabels: { project_name: 'ride-finder', project_type: 'api' },
-  promClient: {
-    collectDefaultMetrics: {},
-  },
-  metricsPath: '/metrics',
-});
 app.use(metricsMiddleware);
 
 /**
