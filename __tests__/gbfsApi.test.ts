@@ -1,4 +1,4 @@
-import { getServices, getPricingPlans, getFreeBikeStatus } from '../lib/gbfsApi';
+import { getServices, getPricingPlans, getFreeBikeStatus } from '../src/gbfs';
 
 describe('getServices', () => {
   it('should return 200', async () => {

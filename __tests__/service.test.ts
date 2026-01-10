@@ -1,5 +1,5 @@
-import { isPointInPolygon, isPointWithinRadius } from '../lib/geo';
-import { getRides, getPrices } from '../lib/service';
+import { isPointInPolygon, isPointWithinRadius } from '../src/geo';
+import { getRides, getPrices } from '../src/service';
 
 describe('getRides', () => {
   it('should be array', async () => {

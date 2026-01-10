@@ -1,5 +1,5 @@
-import { isPointInPolygon, isPointWithinRadius, isValidCoordinate } from '../geo';
-import { GeoCoordinates } from '../geo/types';
+import { isPointInPolygon, isPointWithinRadius, isValidCoordinate } from '../src/geo';
+import { GeoCoordinates } from '../src/geo/types';
 
 describe('isPointInPolyon', (): void => {
   it('should return true', (): void => {

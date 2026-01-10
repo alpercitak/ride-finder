@@ -4,7 +4,7 @@ describe('index', () => {
   let server: any;
   beforeAll(async () => {
     process.env.PORT = undefined;
-    const mod = await import('../index');
+    const mod = await import('../src/index');
     server = (mod as any).default;
   });
 
