@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv';
 import { getRides, getPrices } from './service';
 import type { GetRidesRequest, GetPricesRequest } from './service/types';
 import { GeoCoordinates } from './geo/types';
-import { checkBoolean, isValidNumber } from './lib/validation';
+import { checkBoolean, isValidNumber } from './validation';
 import promBundle from 'express-prom-bundle';
 
 dotenv.config();

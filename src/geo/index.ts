@@ -13,9 +13,8 @@ import type { GeoCoordinates } from './types';
  * @returns true or false
  *
  */
-const isPointInPolygon = (point: GeoCoordinates, polygon: GeoCoordinates[]): boolean => {
-  return isPointInPolygonGeoLib(point, polygon);
-};
+const isPointInPolygon = (point: GeoCoordinates, polygon: GeoCoordinates[]): boolean =>
+  isPointInPolygonGeoLib(point, polygon);
 
 /**
  * Returns if the given coordinates are in the given radius from starting point: center
@@ -26,9 +25,8 @@ const isPointInPolygon = (point: GeoCoordinates, polygon: GeoCoordinates[]): boo
  * @returns true or false
  *
  */
-const isPointWithinRadius = (point: GeoCoordinates, center: GeoCoordinates, radius: number): boolean => {
-  return isPointWithinRadiusGeoLib(point, center, radius);
-};
+const isPointWithinRadius = (point: GeoCoordinates, center: GeoCoordinates, radius: number): boolean =>
+  isPointWithinRadiusGeoLib(point, center, radius);
 
 /**
  * Returns if the given coordinates are valid
@@ -37,8 +35,6 @@ const isPointWithinRadius = (point: GeoCoordinates, center: GeoCoordinates, radi
  * @returns true or false
  *
  */
-const isValidCoordinate = (point: GeoCoordinates): boolean => {
-  return isValidCoordinateGeoLib(point);
-};
+const isValidCoordinate = (point: GeoCoordinates): boolean => isValidCoordinateGeoLib(point);
 
 export { isPointInPolygon, isPointWithinRadius, isValidCoordinate };
