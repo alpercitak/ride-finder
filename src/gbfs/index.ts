@@ -1,16 +1,8 @@
 import axios from 'axios';
 import nodeCache from 'node-cache';
+import type { ApiRequest } from './types';
 
 const cache = new nodeCache();
-
-/**
- * Type declaration for all api requests
- */
-type ApiRequest = {
-  apiUrl: string;
-  cacheKey?: string;
-  rawResponse?: boolean;
-};
 
 /**
  * Returns the response from specific api

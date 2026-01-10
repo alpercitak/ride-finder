@@ -1,5 +1,5 @@
 import { isPointInPolygon, isPointWithinRadius } from '../geo';
-import { getFreeBikeStatus, getPricingPlans } from '../lib/gbfsApi';
+import { getFreeBikeStatus, getPricingPlans } from '../gbfs';
 import type { GetPricesRequest, GetRidesRequest, Price, Ride } from './types';
 const kmeans = require('node-kmeans');
 
