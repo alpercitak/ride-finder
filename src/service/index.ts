@@ -1,41 +1,7 @@
 import { isPointInPolygon, isPointWithinRadius } from '../geo';
-import type { GeoCoordinates } from '../geo/types';
-import { getFreeBikeStatus, getPricingPlans } from './gbfsApi';
+import { getFreeBikeStatus, getPricingPlans } from '../lib/gbfsApi';
+import type { GetPricesRequest, GetRidesRequest, Price, Ride } from './types';
 const kmeans = require('node-kmeans');
-
-/**
- * Type declaration of request for: getRides
- */
-type GetRidesRequest = {
-  is_disabled?: boolean;
-  is_reserved?: boolean;
-  pricing_plan_id?: string;
-  vehicle_type_id?: string;
-
-  polygon?: Array<GeoCoordinates>;
-
-  center?: GeoCoordinates;
-  radius?: number;
-
-  offset?: number;
-  limit?: number;
-
-  with_prices?: boolean;
-  cluster_size?: number;
-};
-
-/**
- * Type declaration of ride
- */
-type Ride = {
-  bike_id: string;
-  is_disabled: boolean;
-  is_reserved: boolean;
-  lat: number;
-  lon: number;
-  pricing_plan_id: string;
-  vehicle_type_id: string;
-};
 
 /**
  * Returns the expected rides by fetching, filtering and transforming
@@ -56,8 +22,8 @@ const getRides = async (args: GetRidesRequest): Promise<any> => {
   }
 
   const ridesFound = rides
-    .filter((ride: Ride) => {
-      return (
+    .filter(
+      (ride: Ride) =>
         (typeof args.polygon !== 'undefined'
           ? isPointInPolygon({ latitude: ride.lat, longitude: ride.lon }, args.polygon)
           : ride) &&
@@ -68,8 +34,7 @@ const getRides = async (args: GetRidesRequest): Promise<any> => {
         (typeof args.is_reserved !== 'undefined' ? ride.is_reserved == args.is_reserved : ride) &&
         (args.pricing_plan_id ? ride.pricing_plan_id === args.pricing_plan_id : ride) &&
         (args.vehicle_type_id ? ride.vehicle_type_id === args.vehicle_type_id : ride)
-      );
-    })
+    )
     .slice(args.offset, args.limit ? (args.offset === undefined ? 0 : args.offset) + args.limit : undefined)
     .map((ride: Ride) => {
       if (args.with_prices && prices) {
@@ -82,9 +47,7 @@ const getRides = async (args: GetRidesRequest): Promise<any> => {
 
   // if any cluster_size is given, found items should be clustered
   if (args.cluster_size) {
-    const vectors = ridesFound.map((ride: Ride) => {
-      return [ride.lat, ride.lon];
-    });
+    const vectors = ridesFound.map((ride: Ride) => [ride.lat, ride.lon]);
 
     return new Promise((resolve) => {
       kmeans.clusterize(vectors, { k: args.cluster_size }, (err: any, res: any) => {
@@ -109,25 +72,11 @@ const getRides = async (args: GetRidesRequest): Promise<any> => {
 };
 
 /**
- * Type declaration of request for: getPrices
- */
-type GetPricesRequest = {
-  plan_id?: string;
-};
-
-/**
- * Type declaration of price
- */
-type Price = {
-  plan_id: string;
-};
-
-/**
  * Returns pricing plans
  * @param args Request parameters
  * @returns Array of prices
  */
-const getPrices = async (args: GetPricesRequest): Promise<Price[]> => {
+const getPrices = async (args: GetPricesRequest): Promise<Array<Price>> => {
   const prices = (await getPricingPlans()).plans;
 
   const pricesFound = prices
@@ -141,4 +90,4 @@ const getPrices = async (args: GetPricesRequest): Promise<Price[]> => {
   return pricesFound;
 };
 
-export { getRides, GetRidesRequest, getPrices, GetPricesRequest };
+export { getRides, getPrices };
