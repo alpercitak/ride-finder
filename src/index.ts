@@ -30,23 +30,20 @@ app.use(metricsMiddleware);
  * @param value Value to be checked
  * @returns boolean
  */
-const checkBoolean = (value: any): boolean => {
-  return !(value === 'false' || value === '0' || value === '' || value === undefined);
-};
+const checkBoolean = (value: any): boolean =>
+  !(value === 'false' || value === '0' || value === '' || value === undefined);
 
 /**
  * Checks if the number is a positive integer or zero
  * @param value Value to be checked
  * @returns boolean
  */
-const isValidNumber = (value: number): boolean => {
-  return !isNaN(value) && value >= 0;
-};
+const isValidNumber = (value: number): boolean => !isNaN(value) && value >= 0;
 
 /**
  * Endpoint root
  */
-app.get('/', (req: Request, res: Response) => {
+app.get('/', (_: Request, res: Response) => {
   return res.status(200).json({ message: 'Hello' });
 });
 
@@ -122,7 +119,7 @@ app.get('/prices', async (req: Request<{}, {}, {}, GetPricesRequest>, res: Respo
 /**
  * Endpoint for health check
  */
-app.get('/health', (req: Request, res: Response) => {
+app.get('/health', (_: Request, res: Response) => {
   return res.status(200).end();
 });
 
