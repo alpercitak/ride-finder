@@ -4,16 +4,23 @@ import { getRides, getPrices } from './service';
 import type { GetRidesRequest, GetPricesRequest } from './service/types';
 import { GeoCoordinates } from './geo/types';
 import { checkBoolean, isValidNumber } from './validation';
-import metricsMiddleware from './prometheus';
-import swaggerUi from 'swagger-ui-express';
-import swaggerDocument from './swagger.json';
+import prometheusMiddleware from './prometheus';
+import swaggerMiddleware from './swagger';
 
 dotenv.config();
 
 const app: Express = express();
 const port: number = parseInt(process.env.PORT as string) || 8001;
 
-app.use(metricsMiddleware);
+/**
+ * Initialize prometheus
+ */
+app.use(prometheusMiddleware);
+
+/**
+ * Initialize swagger
+ */
+app.use('/api-docs', swaggerMiddleware);
 
 /**
  * Endpoint root
@@ -97,11 +104,6 @@ app.get('/prices', async (req: Request<{}, {}, {}, GetPricesRequest>, res: Respo
 app.get('/health', (_: Request, res: Response) => {
   return res.status(200).end();
 });
-
-/**
- * Initialize swagger
- */
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 /**
  * Initial call for getRides for caching
