@@ -136,13 +136,13 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 /**
  * Initial call for getRides for caching
  */
-getRides({});
+// getRides({});
 
 /**
  * Initialize http server
  */
 const server = app.listen(port, () => {
-  console.log(`ride-finder started on port:${port}`);
+  console.log(`ride-finder started on http://localhost:${port}`);
 });
 
 export default server;
