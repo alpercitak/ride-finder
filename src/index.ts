@@ -1,7 +1,8 @@
 import express, { Express, Request, Response } from 'express';
 import * as dotenv from 'dotenv';
 import { getRides, GetRidesRequest, getPrices, GetPricesRequest } from './lib/service';
-import { GeoCoordinates } from './lib/geo';
+import type { GeoCoordinates } from './lib/geo';
+import { checkBoolean, isValidNumber } from './lib/validation';
 import promBundle from 'express-prom-bundle';
 
 dotenv.config();
@@ -24,21 +25,6 @@ const metricsMiddleware = promBundle({
   metricsPath: '/metrics',
 });
 app.use(metricsMiddleware);
-
-/**
- * Convers the given value to boolean
- * @param value Value to be checked
- * @returns boolean
- */
-const checkBoolean = (value: any): boolean =>
-  !(value === 'false' || value === '0' || value === '' || value === undefined);
-
-/**
- * Checks if the number is a positive integer or zero
- * @param value Value to be checked
- * @returns boolean
- */
-const isValidNumber = (value: number): boolean => !isNaN(value) && value >= 0;
 
 /**
  * Endpoint root
