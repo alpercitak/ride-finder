@@ -1,10 +1,12 @@
-import express, { Express, Request, Response } from 'express';
+import express, { type Express, type Request, type Response } from 'express';
 import * as dotenv from 'dotenv';
 import { getRides, getPrices } from './service';
 import type { GetRidesRequest, GetPricesRequest } from './service/types';
 import { GeoCoordinates } from './geo/types';
 import { checkBoolean, isValidNumber } from './validation';
 import metricsMiddleware from './prometheus';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocument from './swagger.json';
 
 dotenv.config();
 
@@ -99,8 +101,6 @@ app.get('/health', (_: Request, res: Response) => {
 /**
  * Initialize swagger
  */
-const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json');
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 /**
