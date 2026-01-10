@@ -1,4 +1,5 @@
-import { GeoCoordinates, isPointInPolygon, isPointWithinRadius } from './geo';
+import { isPointInPolygon, isPointWithinRadius } from '../geo';
+import type { GeoCoordinates } from '../geo/types';
 import { getFreeBikeStatus, getPricingPlans } from './gbfsApi';
 const kmeans = require('node-kmeans');
 
@@ -11,7 +12,7 @@ type GetRidesRequest = {
   pricing_plan_id?: string;
   vehicle_type_id?: string;
 
-  polygon?: GeoCoordinates[];
+  polygon?: Array<GeoCoordinates>;
 
   center?: GeoCoordinates;
   radius?: number;

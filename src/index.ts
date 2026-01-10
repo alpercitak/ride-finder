@@ -1,7 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 import * as dotenv from 'dotenv';
 import { getRides, GetRidesRequest, getPrices, GetPricesRequest } from './lib/service';
-import type { GeoCoordinates } from './lib/geo';
+import { GeoCoordinates } from './geo/types';
 import { checkBoolean, isValidNumber } from './lib/validation';
 import promBundle from 'express-prom-bundle';
 
