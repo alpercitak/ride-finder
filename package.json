@@ -36,6 +36,8 @@
     "swagger-ui-express": "^4.5.0"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.3",
+    "@eslint/js": "^9.39.2",
     "@types/express": "^5.0.0",
     "@types/jest": "^30.0.0",
     "@types/node": "^25.0.6",
@@ -46,6 +48,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-json": "^4.0.0",
     "eslint-plugin-prettier": "^5.0.0",
+    "globals": "^17.0.0",
     "husky": "^9.1.7",
     "jest": "^30.0.0",
     "lint-staged": "^13.0.3",
