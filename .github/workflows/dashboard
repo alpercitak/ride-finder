@@ -1,0 +1,27 @@
+name: dashboard
+on: [push]
+
+jobs:
+  track-metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v1
+
+      - name: Install & Build
+        run: |
+          bun install
+          bun run build
+
+      - name: Calculate Dist Size
+        run: |
+          # Simple script to get size of 'dist' folder in bytes
+          echo "[{\"name\": \"Bundle Size\", \"unit\": \"bytes\", \"value\": $(du -sb dist | cut -f1)}]" > output.json
+
+      - name: Deploy to Dashboard
+        uses: benchmark-action/github-action-benchmark@v1
+        with:
+          tool: "customSmallerIsBetter"
+          output-file-path: "output.json"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          auto-push: true
