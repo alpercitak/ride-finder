@@ -21,7 +21,7 @@ jobs:
       - name: Deploy to Dashboard
         uses: benchmark-action/github-action-benchmark@v1
         with:
-          tool: "customGeneric"
+          tool: "customSmallerIsBetter"
           output-file-path: "output.json"
           github-token: ${{ secrets.GITHUB_TOKEN }}
           auto-push: true
