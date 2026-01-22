@@ -13,12 +13,10 @@ jobs:
           bun install
           bun run build
 
-      - name: Calculate Dist Size
-        run: |
-          # Simple script to get size of 'dist' folder in bytes
-          echo "[{\"name\": \"Bundle Size\", \"unit\": \"bytes\", \"value\": $(du -sb dist | cut -f1)}]" > output.json
+      - name: Generate metrics
+        run: bun run scripts/generate-metrics.ts
 
-      - name: Deploy to Dashboard
+      - name: Deploy to dashboard
         uses: benchmark-action/github-action-benchmark@v1
         with:
           tool: "customSmallerIsBetter"
