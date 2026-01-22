@@ -4,15 +4,15 @@
   "description": "Ride finder based on GBFS data",
   "main": "index.js",
   "scripts": {
-    "dev": "bun  --watch src/index.ts",
-    "build": "rimraf ./dist && tsc -b",
+    "dev": "bun --watch src/index.ts",
+    "build": "rm -rf ./dist && tsc -b",
     "start": "bun run build && bun run dist/index.js",
     "prepare": "husky install",
     "format": "prettier --write .",
     "lint": "eslint . --fix",
-    "test": "jest",
-    "test:coverage": "jest --coverage",
-    "test:watch": "jest --watchAll"
+    "test": "bun test",
+    "test:coverage": "bun test --coverage",
+    "test:watch": "bun test --watch"
   },
   "repository": {
     "type": "git",
@@ -26,7 +26,6 @@
   "homepage": "https://github.com/alpercitak/ride-finder#readme",
   "dependencies": {
     "axios": "^1.1.3",
-    "dotenv": "^17.0.0",
     "express": "^5.0.0",
     "express-prom-bundle": "^8.0.0",
     "geolib": "^3.3.3",
@@ -38,29 +37,24 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.3",
     "@eslint/js": "^9.39.2",
+    "@types/bun": "^1.3.6",
     "@types/express": "^5.0.0",
-    "@types/jest": "^30.0.0",
-    "@types/node": "^25.0.6",
     "@types/swagger-ui-express": "^4.1.8",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
     "eslint": "^9.0.0",
     "globals": "^17.0.0",
     "husky": "^9.1.7",
-    "jest": "^30.0.0",
     "lint-staged": "^16.0.0",
     "prettier": "^3.0.0",
-    "rimraf": "^6.0.0",
     "supertest": "^7.0.0",
-    "ts-jest": "^29.0.3",
-    "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.3"
   },
   "packageManager": "bun@1.3.6",
   "lint-staged": {
     "**/*.{ts,tsx}": [
-      "pnpm format",
-      "pnpm lint"
+      "bun run format",
+      "bun run lint"
     ]
   }
 }

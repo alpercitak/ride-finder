@@ -1,13 +1,10 @@
 import express, { type Express, type Request, type Response } from 'express';
-import * as dotenv from 'dotenv';
 import { getRides, getPrices } from './service';
 import type { GetRidesRequest, GetPricesRequest } from './service/types';
 import { GeoCoordinates } from './geo/types';
 import { checkBoolean, isValidNumber } from './validation';
 import prometheusMiddleware from './prometheus';
 import swaggerMiddleware from './swagger';
-
-dotenv.config();
 
 const app: Express = express();
 const port: number = parseInt(process.env.PORT as string) || 8001;
