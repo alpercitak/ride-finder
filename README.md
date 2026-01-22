@@ -8,7 +8,7 @@ If required, found rides can be clustered by k-means algorithm.
 Install the dependencies.
 
 ```bash
-$ npm i
+$ bun install
 ```
 
 ### Running the application
@@ -18,7 +18,7 @@ Set up the desired port in .env file (PORT - defaults to 8001)
 ### Development mode
 
 ```bash
-$ npm run dev
+$ bun run dev
 ```
 
 After running the command, application should be started on http://localhost:8001
@@ -28,13 +28,13 @@ After running the command, application should be started on http://localhost:800
 Build the application
 
 ```bash
-$ npm run build
+$ bun run build
 ```
 
 Run the application
 
 ```bash
-$ npm run start
+$ bun run start
 ```
 
 ### Deploy to Docker
@@ -71,19 +71,19 @@ This application uses [jest](https://www.npmjs.com/package/jest) for testing
 #### Run tests
 
 ```bash
-$ npm run test
+$ bun run test
 ```
 
 #### Run tests in watch mode
 
 ```bash
-$ npm run test:watch
+$ bun run test:watch
 ```
 
 #### Run tests in coverage mode
 
 ```bash
-$ npm run test:coverage
+$ bun run test:coverage
 ```
 
 #### Formatting
@@ -98,8 +98,8 @@ Project files are linted and prettified in every commit with husky (git hooks)\
 The following can also be used separately.
 
 ```bash
-$ npm run lint
-$ npm run format
+$ bun run lint
+$ bun run format
 ```
 
 #### Further notes
